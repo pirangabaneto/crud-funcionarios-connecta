@@ -6,6 +6,7 @@ use App\Models\Employee;
 use Illuminate\Http\Request;
 use App\Rules\ValidCpf;
 use App\Rules\ValidPhoneNumber;
+use Illuminate\Validation\Rule;
 
 class EmployeeController extends Controller
 {
@@ -72,7 +73,7 @@ class EmployeeController extends Controller
         try {
             $validatedData = $request->validate([
                 'name' => 'required|string|max:255',
-                'cpf' => ['nullable', 'string', 'unique:employees,cpf', new ValidCpf()],
+                'cpf' => ['nullable', 'string',   Rule::unique('employees', 'cpf')->ignore($employee->id), new ValidCpf()],
                 'birth_date' => 'nullable|date',
                 'phone_number' => ['nullable', 'string', new ValidPhoneNumber()],
                 'gender' => 'required|in:Masculino,Feminino,Outro',
