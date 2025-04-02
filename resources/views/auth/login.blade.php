@@ -33,6 +33,10 @@
         </div>
 
         <div class="flex items-center justify-end mt-4">
+            <a href="{{ route('register') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+                {{ __('Register') }}
+            </a>
+            
             <x-primary-button class="ms-3">
                 {{ __('Log in') }}
             </x-primary-button>
